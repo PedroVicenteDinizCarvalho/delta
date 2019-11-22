@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 class Create extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {title: '', url:''};
+    this.state = {name: '', address:'', selectedFile: null};
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
@@ -15,34 +15,39 @@ class Create extends React.Component {
   }
   handleSubmit(event) {
 	  event.preventDefault();
-	  fetch('http://127.0.0.1/ci_react/index.php/websiterestcontroller/add_website', {
+	  fetch('http://127.0.0.1/delta/index.php/studentrestcontroller/add_student', {
 			method: 'POST',
 			body: JSON.stringify({
-							title: this.state.title,
-							url: this.state.url
+							name: this.state.name,
+							address: this.state.address,
+							selectedFile: this.state.selectedFile
 			}),
 			headers: {
 							"Content-type": "application/json; charset=UTF-8"
 			}
 		}).then(response => {
 				if(response.status === 200) {
-					alert("New website saved successfully");
+					alert("New student saved successfully");
 				}
 			});
   }
   render() {
     return (
 		<div id="container">
-		  <Link to="/">Websites</Link>
+		  <Link to="/">Student</Link>
 			  <p/>
 			  <form onSubmit={this.handleSubmit}>
 				<p>
-					<label>Title:</label>
-					<input type="text" name="title" value={this.state.title} onChange={this.handleChange} placeholder="Title" />
+					<label>Name:</label>
+					<input type="text" name="name" value={this.state.name} onChange={this.handleChange} placeholder="Name" />
 				</p>
 				<p>
-					<label>URL:</label>
-					<input type="text" name="url" value={this.state.url} onChange={this.handleChange} placeholder="URL" />
+					<label>Endereço:</label>
+					<input type="text" name="address" value={this.state.address} onChange={this.handleChange} placeholder="Endereço" />
+				</p>
+				<p>
+					<label>Imagem:</label>
+					<input type="file" name="selectedFile" value={this.state.selectedFile} onChange={this.handleChange} placeholder="Imagem" />
 				</p>
 				<p>
 					<input type="submit" value="Submit" />

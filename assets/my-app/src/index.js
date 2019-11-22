@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import './website.css';
-import Websites from './components/websites';
+import Students from './components/students';
 import Create from './components/create';
 import Update from './components/update';
 import * as serviceWorker from './serviceWorker';
@@ -10,7 +10,7 @@ import * as serviceWorker from './serviceWorker';
 ReactDOM.render(
 	<Router>
 		<div>
-			<Route exact path='/' component={Websites} />
+			<Route exact path='/' component={Students} />
 			<Route path='/create' component={Create} />
 			<Route path='/update/:id' component={Update} />
 		</div>

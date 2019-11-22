@@ -19,36 +19,36 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `ci_react`
+-- Database: `delta`
 --
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `website`
+-- Table structure for table `student`
 --
 
-CREATE TABLE `website` (
+CREATE TABLE `student` (
   `id` int(10) UNSIGNED NOT NULL,
-  `title` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `url` varchar(255) COLLATE utf8_unicode_ci NOT NULL
+  `name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `address` varchar(255) COLLATE utf8_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Dumping data for table `website`
+-- Dumping data for table `student`
 --
 
-INSERT INTO `website` (`id`, `title`, `url`) VALUES
-(3, 'لاله', 'http://localhost:3000/update/3');
+INSERT INTO `student` (`id`, `name`, `url`) VALUES
+(3, 'Pedro Vicente', 'Mitre Texeira 280');
 
 --
 -- Indexes for dumped tables
 --
 
 --
--- Indexes for table `website`
+-- Indexes for table `student`
 --
-ALTER TABLE `website`
+ALTER TABLE `student`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -56,9 +56,9 @@ ALTER TABLE `website`
 --
 
 --
--- AUTO_INCREMENT for table `website`
+-- AUTO_INCREMENT for table `student`
 --
-ALTER TABLE `website`
+ALTER TABLE `student`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

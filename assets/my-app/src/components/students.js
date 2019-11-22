@@ -1,44 +1,45 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-class Websites extends React.Component {
+class Students extends React.Component {
 	constructor(props) {
 		super(props);
-		this.state = {websites: []};
+		this.state = {students: []};
 		this.headers = [
 			{ key: 'id', label: 'Id'},
-			{ key: 'title', label: 'Title' },
-			{ key: 'url', label: 'URL' }
+			{ key: 'name', label: 'Name' },
+			{ key: 'address', label: 'Endereço' },
+			{ key: 'selectedFile', label: 'Imagem' }
 		];
-		this.deleteWebsite = this.deleteWebsite.bind(this);
+		this.deleteStudent = this.deleteStudent.bind(this);
 	}
 	
 	componentDidMount() {
-		fetch('http://127.0.0.1/ci_react/index.php/websiterestcontroller/websites')
+		fetch('http://127.0.0.1/delta/index.php/studentrestcontroller/students')
 			.then(response => {
 				return response.json();
 			}).then(result => {
 				console.log(result);
 				this.setState({
-					websites:result
+					students:result
 				});
 			});
 	}
 	
-	deleteWebsite(id) {
+	deleteStudent(id) {
 		if(window.confirm("Are you sure want to delete?")) {
-			fetch('http://127.0.0.1/ci_react/index.php/websiterestcontroller/delete_website/' + id, {
+			fetch('http://127.0.0.1/delta/index.php/studentrestcontroller/delete_student/' + id, {
                                 method : 'DELETE'
                                    }).then(response => { 
 					if(response.status === 200) {
-						alert("Website deleted successfully");
-                                                fetch('http://127.0.0.1/ci_react/index.php/websiterestcontroller/websites')
+						alert("Student deleted successfully");
+                                                fetch('http://127.0.0.1/delta/index.php/studentrestcontroller/students')
 						.then(response => {
 							return response.json();
 						}).then(result => {
 							console.log(result);
 							this.setState({
-								websites:result
+								students:result
 							});
 						});
 					} 
@@ -49,7 +50,7 @@ class Websites extends React.Component {
 	render() {
 		return (
 			<div id="container">
-				<Link to="/create">Add Website</Link>
+				<Link to="/create">Add Student</Link>
 				<p/>
 				<table>
 					<thead>
@@ -66,16 +67,17 @@ class Websites extends React.Component {
 					</thead>
 					<tbody>
 						{
-							this.state.websites.map(function(item, key) {
+							this.state.students.map(function(item, key) {
 							return (
 								<tr key = {key}>
 								  <td>{item.id}</td>
-								  <td>{item.title}</td>
-								  <td>{item.url}</td>
+								  <td>{item.name}</td>
+								  <td>{item.address}</td>
+								  <td>{item.selectedFile}</td>
 								  <td>
 										<Link to={`/update/${item.id}`}>Edit</Link>
 										 
-										<a href="javascript:void(0);" onClick={this.deleteWebsite.bind(this, item.id)}>Delete</a>
+										<a href="javascript:void(0);" onClick={this.deleteStudent.bind(this, item.id)}>Delete</a>
 								  </td>
 								</tr>
 											)
@@ -88,4 +90,4 @@ class Websites extends React.Component {
 	}
 }
 
-export default Websites;
+export default Students;
